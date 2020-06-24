@@ -1,0 +1,42 @@
+$dark-smoke: #555555;
+
+header{
+	background-color: #fff;
+	padding: 1.3rem 1.5rem;
+	display: flex;
+	font-size: .75rem;
+	justify-content: space-between;
+	align-items: center;
+	color: $dark-smoke;
+
+	.logo{
+		width: 96px;
+
+		img{
+			width: 100%;
+		}
+	}
+
+	.info{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		.info-id{
+			.name{
+				font-weight: bold;
+			}
+		}
+
+		.info-square{
+			margin-left: 16px;
+
+			.square{
+				padding: 8px 6px;
+				font-weight: bold;
+				background-color: #F5F5F5;
+				border-radius: 5px;
+			}
+		}
+	}
+}
