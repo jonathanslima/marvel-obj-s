@@ -6,9 +6,32 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #E5E5E5;
+  color: #555;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.center{
+  text-align: center !important;
+}
+
+.aligned-text{
+  text-align: center;
+  margin: 0 25px;
+}
+
+@media(min-width: 1200px){
+  .aligned-text{
+    text-align: left;
+    margin: 0;
+
+  }
+  
+  .container{
+    width: 1140px;
+    margin: 0 auto;
+  }
 }

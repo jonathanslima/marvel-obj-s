@@ -1,0 +1,188 @@
+.list-hero,
+.list-events,
+.list-series{
+	display: none;
+	list-style: none;
+}
+
+.titles-list{
+	width: 100%;
+	display: flex;
+	margin-top: 2rem;
+
+	.title-list{
+		color: #8E8E8E;
+		font-size: .75rem;
+	}
+
+	.title-list-1{
+		margin-left: 24px;
+	}
+
+	.title-list-2,
+	.title-list-3{
+		display: none;
+	}
+}
+
+.list-hero{
+	margin: 0 25px;
+	padding: 0;
+	display: block;
+	margin-top: .625rem;
+	
+	.hero-card{
+		border-radius: 4px;
+		box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+		background-color: #fff;
+		margin-bottom: .5rem;
+		display: flex;
+		width: 100%;
+		align-items: center;
+		
+		.hero-id{
+			width: 100%;
+			display: flex;
+			align-items: center;
+
+			.hero-img{
+				display: flex;
+				margin: 0;
+				
+				img{
+					padding: .75rem 1rem;
+					width: 3rem;
+				}
+			}
+	
+			.name{
+				font-size: 0.875rem;
+
+				a{
+					color: #555;
+					text-decoration: none;
+					transition: 500ms all ease;
+
+					&:hover{
+						color: #167ABC;
+					}
+				}
+			}
+		}
+		
+	}
+}
+
+.pagination{
+	position: relative;
+	bottom: 0;
+	background: #fff;
+	padding: 25px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.items-paginator{
+	display: flex;
+	padding: 0;
+	list-style-type: none;
+
+	.item{
+		width: 32px;
+		height: 32px;
+		background-color: #F5F5F5;
+		border: 1px solid #E5E5E5;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: #8E8E8E;
+		margin-right: 8px;
+		border-radius: 4px;
+		cursor: pointer;
+		transition: 500ms all ease;
+
+		&:hover{
+			border: 1px solid #167ABC;
+			background-color: #167ABC;
+			color: #fff;
+		}
+	}
+
+	.active{
+		border: 1px solid #167ABC;
+		background-color: #167ABC;
+		color: #fff;
+	}
+}
+
+@media(min-width: 768px){
+	.titles-list{
+	
+		.title-list{
+			width: 33%;
+			display: block;
+			
+		}
+		.title-list-1{
+			margin-left: 1.5rem;
+			width: 31%;
+		}
+		
+		.title-list-2{
+			width: 33%;
+		}
+
+	}
+	
+	.hero-id,
+	.list-events,
+	.list-series{
+		display: block;
+		margin: 0;
+    padding: 10px 0;
+		flex-grow: 1;
+		font-size: 0.875rem;
+	}
+
+	.list-events{
+		width: 33%;
+	}
+
+	.list-series{
+		width: 34%;
+	}
+
+
+	.list-hero{	
+		.hero-card{			
+			.hero-id{
+				width: 33%;
+			}
+		}
+	}
+}
+
+@media(min-width: 1200px){
+	.titles-list{
+		.title-list-1{
+			width: 30%;
+		}
+	}
+
+	.list-hero{
+		margin-left: 0;
+		
+		.hero-card{
+			.hero-id{
+				.hero-img{
+					img{
+						height: 3rem;
+						padding: 1.25rem 1.5rem;
+						
+					}
+				}
+			}
+		}
+	}
+}
