@@ -81,38 +81,46 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-}
-
-.items-paginator{
-	display: flex;
-	padding: 0;
 	list-style-type: none;
 
-	.item{
-		width: 32px;
+	li{
+		min-width: 32px;
+		width: auto;
 		height: 32px;
 		background-color: #F5F5F5;
 		border: 1px solid #E5E5E5;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		color: #8E8E8E;
 		margin-right: 8px;
 		border-radius: 4px;
 		cursor: pointer;
 		transition: 500ms all ease;
-
+			
+		a{
+			color: #8E8E8E;
+			text-decoration: none;
+		}
+		
 		&:hover{
 			border: 1px solid #167ABC;
 			background-color: #167ABC;
 			color: #fff;
+			
+			a{
+				color: #fff;
+			}
 		}
+		
 	}
-
 	.active{
 		border: 1px solid #167ABC;
 		background-color: #167ABC;
-		color: #fff;
+		
+		a{
+			color: #fff;
+			text-decoration: none;
+		}
 	}
 }
 

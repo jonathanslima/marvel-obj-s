@@ -3,16 +3,13 @@ import './card.scss';
 import cryptData from "../../config/cripto";
 import {Link} from 'react-router-dom';
 import load from '../../assets/load.gif'
+import Pagination from "react-js-pagination";
+import { useDispatch, useSelector } from 'react-redux';
 
 function Card() {
 	const [characters, setCharacters] = useState({ hits: [] });
-	const [count, setCounter] = useState(0);
-	const [total, setTotal] = useState({
-		totalHeroes: 1493,
-		offset: 0,
-		limit: 10,
-		pag: [1, 2, 3]
-	});
+	const [activePage, setActivePage] = useState(1);
+	const dispatch = useDispatch();
 		
 	const callHeroes = async (lim = 10, off = 0, crypt)=>{
 		let data = crypt();
@@ -24,44 +21,20 @@ function Card() {
 
 		const heroes = await apiCall.json();
 		setCharacters(heroes.data);
+		dispatch({
+			type: 'UPDATE',
+			data: heroes.data.results
+		})
 	};
 
   useEffect(() => {
-		// callHeroes(10, 0,cryptData)
-	}, [count]);
+		callHeroes(10, 0,cryptData)
+	}, []);
 
-	function updateList(e){
-		let init = e.target.dataset.init;
-		// e.target.classList.add('active')
-		// setTotal({...total, pag: [2,3,4]})
-		console.log(total.pag)
-		
-		if(init === 'prev'){
-			if(total.pag[0] !== 1){
-				setTotal({...total, pag: [
-					(total.pag[0] - 1), 
-					(total.pag[1] - 1), 
-					(total.pag[2] - 1) 
-				]})
-			}
-		}else if(init === 'next'){
-			if(total.pag[2] !== 10){
-				setTotal({...total, pag: [
-					(total.pag[0] + 1), 
-					(total.pag[1] + 1), 
-					(total.pag[2] + 1) 
-				]})
-			}
-		}else if(init === 'init'){
-			if(total.pag[2] !== 10){
-				setTotal({...total, pag: [
-					(total.pag[0] + 1), 
-					(total.pag[1] + 1), 
-					(total.pag[2] + 1) 
-				]})
-			}
-		}
-		
+	function handlePageChange(pageNumber) {
+		let offset = pageNumber === 1 ? 0 : ((pageNumber * 10) - 10);
+		setActivePage(pageNumber);
+		callHeroes(10, offset, cryptData)
 	}
 
 	return (
@@ -72,11 +45,11 @@ function Card() {
 			<span className="title-list title-list-3">Eventos</span>
 		</div>
 		<ul className="list-hero">
-			{/* {
+			{
 				characters.results ? 
 				characters.results.map((item, index)=> {
 					return(
-						<li key={item.id} className="hero-card">
+						<li key={item.id} data-id={item.id} className="hero-card">
 							<div className="hero-id">
 								<Link to={`/details?${item.id}`}>
 									<picture className="hero-img">
@@ -115,24 +88,19 @@ function Card() {
 					)
 				})
 				: <div className="center"><img src={load} alt=""/></div>
-			} */}
+			}
 			
 		</ul>
 
-		<div className="pagination">
-			<ul className="items-paginator" onClick={(e)=>{updateList(e)}} >
-				<li data-init="first" onClick={()=>{callHeroes(10, 0, cryptData)}} className="item"> &lt;&lt; </li>
-				<li data-init="prev" className="item">&lt;</li>
-				<li data-init="init" className="item">{total.pag[0]}</li>
-				<li data-init="midd" className="item">{total.pag[1]}</li>
-				<li data-init="post" className="item">{total.pag[2]}</li>
-				<li data-init="next" className="item">&gt;</li>
-				<li data-init="last" className="item">&gt;&gt;</li>
-			</ul>
-		</div>
-
-		{/* <button onClick={()=>{callHeroes(10, 500, cryptData)}}>oi</button> */}
-		
+		<div>
+        <Pagination
+          activePage={activePage}
+          itemsCountPerPage={10}
+          totalItemsCount={1493}
+          pageRangeDisplayed={3}
+          onChange={handlePageChange}
+        />
+      </div>		
 		</>
 	);
 }
