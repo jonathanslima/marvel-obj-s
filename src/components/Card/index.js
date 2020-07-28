@@ -16,7 +16,7 @@ function Card() {
 		let limit = lim;
 		let offset = off;
     const apiCall = await fetch(
-      `http://gateway.marvel.com/v1/public/characters?limit=${limit}&offset=${offset}&apikey=${data.apiKey}&ts=${data.timestamp}&hash=${data.hash}`
+      `https://gateway.marvel.com/v1/public/characters?limit=${limit}&offset=${offset}&apikey=${data.apiKey}&ts=${data.timestamp}&hash=${data.hash}`
 		);
 
 		const heroes = await apiCall.json();
